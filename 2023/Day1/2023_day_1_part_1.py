@@ -12,7 +12,7 @@
 
 """
 import re
-sum = \
+sum = 0
 
 def find_first_and_last_number(scramble):
     matches = re.findall(r'\d',scramble)
