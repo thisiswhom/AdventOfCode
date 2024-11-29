@@ -27,7 +27,6 @@ list_for_summing = input_file.readlines()
 print(list_for_summing)
 
 for item in list_for_summing:
-    #item.replace("\n", " ")
     print(f'item being checked {item} is resulted as {find_first_and_last_number(item)}')
     sum += find_first_and_last_number(item)
 
