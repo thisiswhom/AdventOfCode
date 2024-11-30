@@ -32,6 +32,9 @@ def extract_spelled_numbers(line):
         for match in re.finditer(word, line):
             start_index = match.start()
             matches.append((start_index,digit))
+    if not matches:
+        return "0"
+
     matches.sort(key=lambda x: x[0])
     found_numbers = "".join(digit for _, digit in matches)
 
