@@ -32,8 +32,11 @@ def extract_spelled_numbers(line):
         for match in re.finditer(word, line):
             start_index = match.start()
             matches.append((start_index,digit))
-    if not matches:
-        return "0"
+
+    for match in re.finditer('\d', line):
+        start_index = match.start()
+        digit = match.group()
+        matches.append((start_index, digit))
 
     matches.sort(key=lambda x: x[0])
     found_numbers = "".join(digit for _, digit in matches)
@@ -48,7 +51,7 @@ def find_first_and_last_number(scramble):
     return first_digit * 10 + last_digit
 
 #opens the file containing the data and creates an object
-input_file = open(r"example_data_part_2.txt")
+input_file = open(r"calibration_values.txt")
 
 #reads each line and puts it in a list
 list_for_summing = input_file.readlines()
@@ -56,11 +59,9 @@ print(list_for_summing)
 
 for item in list_for_summing:
     stripped_item = item.strip()
-    print(stripped_item)
     replaced_item = extract_spelled_numbers(stripped_item)
-    print(replaced_item)
     calibration_result = find_first_and_last_number(replaced_item)
-    print(f'item being checked {stripped_item} is resulted as {calibration_result}')
+    print(f'the stripped item is: {stripped_item} \nthe replaces item is {replaced_item}\nthe calibration result is: {calibration_result}\n\n')
     sum += calibration_result
 
 print(sum)
