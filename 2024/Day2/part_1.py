@@ -26,6 +26,7 @@ safe_report_count = 0
 input_file = open(r'example_input')
 input_data = input_file.readlines()
 for line in input_data:
+    increment_report_counter = True
     report = [int(x) for x in line.split()]
     sorted_report = sorted(report)
     reverse_sorted_report = sorted(report, reverse=True)
@@ -41,5 +42,14 @@ for line in input_data:
         break
     length_of_report = len(report)
     print(f"there are {length_of_report} numbers in the report")
-    for number in report:
-        pass
+    index_tracker = 0
+    for index, number in enumerate(report):
+        print(number)
+        """index_tracker += 1
+        difference = number - report[1]
+        print(f"the difference in {number} and {report[1]} is {difference}")
+        if abs(difference) > 2 ==0:
+            increment_report_counter = False
+            break
+        if index_tracker >= length_of_report:
+            break"""
