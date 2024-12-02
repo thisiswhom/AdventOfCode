@@ -1,5 +1,5 @@
 """
-input the list data
+input the list input
 break into two lists
 for each item in list a, check how many times in list b
 multuply item in list a from the odccurance in b

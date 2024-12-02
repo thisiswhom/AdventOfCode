@@ -1,5 +1,5 @@
 """
-input the list data
+input the list input
 break into tuples lists within lists?
 subtract each other
 add result to var sum

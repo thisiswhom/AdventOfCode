@@ -19,7 +19,7 @@ def find_first_and_last_number(scramble):
     number = int(matches[0])*10 + int(matches[-1])
     return number
 
-#opens the file containing the data and creates an object
+#opens the file containing the input and creates an object
 input_file = open(r"calibration_values.txt")
 
 #reads each line and puts it in a list
