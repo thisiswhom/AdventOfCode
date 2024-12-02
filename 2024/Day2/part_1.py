@@ -44,7 +44,12 @@ for line in input_data:
     print(f"there are {length_of_report} numbers in the report")
     index_tracker = 0
     for index, number in enumerate(report):
-        print(number)
+        subtracting_index = index + 1
+        if subtracting_index == length_of_report:
+            break
+        print(f'this is index {index} this is subtracting index {subtracting_index}')
+        difference = report[index] - report[subtracting_index]
+        print(f'the difference of {report[index]} and {report[subtracting_index]} is equal to {difference}')
         """index_tracker += 1
         difference = number - report[1]
         print(f"the difference in {number} and {report[1]} is {difference}")
