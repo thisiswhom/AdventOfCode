@@ -20,46 +20,46 @@ iterate through the numbers subbing index 1 from 0, if its negative
     or have a logic test of if sort(report) == report or sort(report, reverse) == report:
     this will check if in order already one way or anohter?
 """
-
 safe_report_count = 0
 
-input_file = open(r'example_input')
-input_data = input_file.readlines()
+
+with open(r'input') as input_file:
+    input_data = input_file.readlines()
+
 for line in input_data:
-    increment_report_counter = True
+    ordered_status = False
+    increment_status = True
     report = [int(x) for x in line.split()]
     sorted_report = sorted(report)
     reverse_sorted_report = sorted(report, reverse=True)
-    print(report)
-    print(f'here is the sorted report {sorted_report}')
-    print(f'here is the reverse sorted report {reverse_sorted_report}')
+
+    print(f"Original report: {report}")
+    print(f"Sorted report: {sorted_report}")
+    print(f"Reverse sorted report: {reverse_sorted_report}")
+
     if reverse_sorted_report == report:
-        print("its reversed!")
+        print("The report is in reverse order!")
+        ordered_status = True
     elif sorted_report == report:
-        print("its in order!")
+        print("The report is in ascending order!")
+        ordered_status = True
     else:
-        print("its not in any order!")
+        print("The report is not ordered!")
 
     length_of_report = len(report)
-    print(f"there are {length_of_report} numbers in the report")
-    for index, number in enumerate(report):
-        subtracting_index = index + 1
-        if subtracting_index == length_of_report:
-            safe_report_count +=1
-            break
-        print(f'this is index {index} this is subtracting index {subtracting_index}')
-        difference = report[index] - report[subtracting_index]
-        print(f'the difference of {report[index]} and {report[subtracting_index]} is equal to {difference}')
-        if difference <=3 != 0:
-            pass
+    for index in range(length_of_report - 1):
+        difference = report[index] - report[index + 1]
+        print(f"The difference between {report[index]} and {report[index + 1]} is {difference}")
+        if 0 < abs(difference) <= 3:
+            continue
         else:
+            increment_status = False
             break
-        """index_tracker += 1
-        difference = number - report[1]
-        print(f"the difference in {number} and {report[1]} is {difference}")
-        if abs(difference) > 2 ==0:
-            increment_report_counter = False
-            break
-        if index_tracker >= length_of_report:
-            break"""
-print(safe_report_count)
+
+    if increment_status and ordered_status:
+        safe_report_count += 1
+        print("This report is safe!")
+    else:
+        print("This report is NOT safe!")
+
+print(f"Final safe report count: {safe_report_count}")
