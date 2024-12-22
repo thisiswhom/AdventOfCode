@@ -1,4 +1,4 @@
-
+import re
 
 class Rectangular_Prism_Present():
     def __init__(self, length, width, height):
@@ -36,4 +36,34 @@ def intake_presents(file):
     return list_of_presents
 
 def convert_present_string_to_ints(string):
-    pass
+    """takes in a string with numbers seperated with x's and returns the numbers"""
+    dimensions = [int(number) for number in re.findall(r'\d+', string)]
+    return dimensions
+
+def create_file_path(file_name):
+    """This function creates the absolute path of the values file.
+
+    This is to enable me to not worry about pushing my username/file structure github
+    Possible side benefit is others can run this on their system without worrying
+    about differences in their enviroment and mine"""
+    import os
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    total_paper_needed = 0
+    file = os.path.join(current_dir, file_name)
+    return file
+
+def main():
+    """Takes in the values file and prints out the number of feet of wrapping paper needed"""
+
+    file = create_file_path("values")
+    present_list = intake_presents(file)
+    total_paper_needed = 0
+    for line in present_list:
+        verticies = convert_present_string_to_ints(line)
+        current_present = Rectangular_Prism_Present(verticies[0], verticies[1], verticies[2])
+        total_paper_needed += current_present.wrapping_paper_needed()
+    print(f"{total_paper_needed} feet of wrapping paper needed")
+
+
+if __name__ == "__main__":
+    main()

@@ -8,7 +8,7 @@ def testable_rpp():
 
 @pytest.fixture
 def sample_string():
-    return [2,3,4]
+    return "2x3x4"
 
 mock_file_data = """2x3x4
 1x2x3
@@ -44,5 +44,17 @@ def test_intake_presents(mocker):
     result = solution.intake_presents("dummy_file.txt")
     assert result ==mock_file_data.splitlines(keepends=True)
 
-def test_convert_present_string_to_ints():
+def test_convert_present_string_to_ints(sample_string):
     assert solution.convert_present_string_to_ints(sample_string) == [2,3,4]
+
+def test_create_file_path(mocker):
+    """Another cool use of mocker to mock os functions and return my chosen values """
+    mock_current_dir = "/mocked/directory"
+    mocker.patch("os.path.dirname", return_value=mock_current_dir)
+    mocker.patch("os.path.abspath", return_value=mock_current_dir)
+    result = solution.create_file_path("values")
+    assert result == "/mocked/directory/values"
+
+
+def test_main():
+    solution.main()
