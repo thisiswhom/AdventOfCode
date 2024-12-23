@@ -1,10 +1,9 @@
 import pytest
-
 import source.solution as solution
 
 @pytest.fixture
 def testable_rpp():
-    return solution.Rectangular_Prism_Present(2,3,4)
+    return solution.Rectangular_Prism_Present(2,4,3)
 
 @pytest.fixture
 def sample_string():
@@ -13,8 +12,6 @@ def sample_string():
 mock_file_data = """2x3x4
 1x2x3
 """
-
-
 
 def test_RPP_attributes(testable_rpp):
         #rpp = solution.Rectangular_Prism_Present()
@@ -33,6 +30,15 @@ def test_RPP_smallest_side(testable_rpp):
 
 def test_wrapping_paper_needed(testable_rpp):
     assert testable_rpp.wrapping_paper_needed() == 58
+
+def test_ribbon_wrap(testable_rpp):
+    assert testable_rpp.ribbon_wrap() == 2+2+3+3 == 10
+
+def test_ribbon_bow(testable_rpp):
+    assert testable_rpp.ribbon_bow() == 2*3*4 == 24
+
+def test_ribbon_needed(testable_rpp):
+    assert testable_rpp.ribbon_needed() == (2*3*4) + (2+2+3+3) == 34
 
 
 def test_intake_presents(mocker):
