@@ -35,3 +35,11 @@ class Naughty_Or_Nice_Text():
             if self.text[index_tracker] == self.text[index_tracker +1]:
                 return True
             index_tracker += 1
+
+    def passed_all_tests(self):
+        if self.three_vowel_check() and self.banned_combos_check() and self.consecutive_letters_check():
+            return True
+        else:
+            return False
+
+

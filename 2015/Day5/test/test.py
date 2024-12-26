@@ -29,5 +29,7 @@ def test_NONS_consecutive_letters_check(test_input, expected):
     testing = solution.Naughty_Or_Nice_Text(test_input)
     assert testing.consecutive_letters_check() == expected
 
-
-
+@pytest.mark.parametrize("test_input,expected", [("Tarrasque", True), ("Queue", False)])
+def test_NONS_passed_all_tests(test_input,expected):
+    testing = solution.Naughty_Or_Nice_Text(test_input)
+    assert testing.passed_all_tests() == expected
