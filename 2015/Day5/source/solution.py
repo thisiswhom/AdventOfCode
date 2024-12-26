@@ -14,3 +14,24 @@ class Naughty_Or_Nice_Text():
             return True
         else:
             return False
+
+    def banned_combos_check(self):
+        combo_count = 0
+        banned_combos = ['ab', 'cd', 'pq', 'xy']
+        for combo in banned_combos:
+            combo_count += self.text.count(combo)
+        if combo_count > 0:
+            return False
+        else:
+            return True
+
+    def consecutive_letters_check(self):
+        consecutive_count = 0
+        index_tracker = 0
+        length_of_text = len(self.text) -1
+        for index in self.text:
+            if index_tracker + 1 > length_of_text:
+                return False
+            if self.text[index_tracker] == self.text[index_tracker +1]:
+                return True
+            index_tracker += 1
