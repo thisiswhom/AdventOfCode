@@ -43,3 +43,21 @@ class Naughty_Or_Nice_Text():
             return False
 
 
+def create_file_path(file_name):
+    """This function creates the absolute path of the values file.
+
+    This is to enable me to not worry about pushing my username/file structure github
+    Possible side benefit is others can run this on their system without worrying
+    about differences in their enviroment and mine"""
+    import os
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    total_paper_needed = 0
+    file = os.path.join(current_dir, file_name)
+    return file
+
+
+def intake_values(file):
+    """Opens a file then makes each line a string in list."""
+    input_file = open(f"{file}")
+    list_of_values = [line.strip() for line in input_file.readlines()]
+    return list_of_values
