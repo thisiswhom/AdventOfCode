@@ -36,7 +36,7 @@ class Naughty_Or_Nice_Text():
                 return True
             index_tracker += 1
 
-    def passed_all_tests(self):
+    def passed_all_part_one_tests(self):
         if self.three_vowel_check() and self.banned_combos_check() and self.consecutive_letters_check():
             return True
         else:
@@ -61,3 +61,18 @@ def intake_values(file):
     input_file = open(f"{file}")
     list_of_values = [line.strip() for line in input_file.readlines()]
     return list_of_values
+
+def main():
+    number_of_nice = 0
+    file = create_file_path("values")
+    list_of_values = intake_values(file)
+    for value in list_of_values:
+        questionable_string = Naughty_Or_Nice_Text(value)
+        if questionable_string.passed_all_part_one_tests():
+            number_of_nice += 1
+    print(f"There are {number_of_nice} nice strings!")
+    return number_of_nice
+
+
+if __name__ == "__main__":
+    main()
