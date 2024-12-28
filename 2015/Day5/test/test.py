@@ -7,7 +7,7 @@ def testable_NONS():
     """Simple fixture to that will pass all three requirments in part one"""
     return solution.Naughty_Or_Nice_Text("faaart")
 
-def test_NONS_attributes(testable_NONS):
+def test_class_attributes(testable_NONS):
     """Ensuring that the class takes only one parameter and its a string"""
     assert hasattr(testable_NONS, "text")
     assert isinstance(testable_NONS.text, str)
@@ -18,7 +18,7 @@ def test_NONS_attributes(testable_NONS):
     ("faeirt", True),
     ("frrt", False)
 ])
-def test_NONS_vowels_check(test_input, expected):
+def test_vowels_check(test_input, expected):
     """test to ensure it will return the correct response for what vowels are counted"""
     testing = solution.Naughty_Or_Nice_Text(test_input)
     assert testing.three_vowel_check() == expected
@@ -27,7 +27,7 @@ def test_NONS_vowels_check(test_input, expected):
     ("passes", True),
     ("grabbed", False)
 ])
-def test_NONS_banned_combos_check(test_input, expected):
+def test_banned_combos_check(test_input, expected):
     """banned combos are checked against the text"""
     testing = solution.Naughty_Or_Nice_Text(test_input)
     assert testing.banned_combos_check() == expected
@@ -36,7 +36,7 @@ def test_NONS_banned_combos_check(test_input, expected):
     ("passed", True),
     ("fail", False)
 ])
-def test_NONS_consecutive_letters_check(test_input, expected):
+def test_consecutive_letters_check(test_input, expected):
     """needs at least two consecutive letters to pass"""
     testing = solution.Naughty_Or_Nice_Text(test_input)
     assert testing.consecutive_letters_check() == expected
@@ -44,7 +44,7 @@ def test_NONS_consecutive_letters_check(test_input, expected):
 @pytest.mark.parametrize("test_input,expected", [
     ("Tarrasque", True),
     ("Queue", False)])
-def test_NONS_passed_all_part_one_tests(test_input,expected):
+def test_passed_all_part_one_tests(test_input,expected):
     """Checks if the three checks for part one are passed"""
     testing = solution.Naughty_Or_Nice_Text(test_input)
     assert testing.passed_all_part_one_tests() == expected
@@ -53,7 +53,7 @@ def test_NONS_passed_all_part_one_tests(test_input,expected):
     ("xyx", True),
     ("xxy", False)
 ])
-def test_NONS_repeat_pattern_check(test_input,expected):
+def test_repeat_pattern_check(test_input,expected):
     testing = solution.Naughty_Or_Nice_Text(test_input)
     assert testing.repeat_pattern_check () == expected
 
