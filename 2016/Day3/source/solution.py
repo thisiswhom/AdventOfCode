@@ -32,12 +32,12 @@ def extract_numbers(s):
 def main():
     file = create_file_path("values")
     list_of_values = intake_values(file)
-    number_of_real_triangles = 0
+    number_of_real_triangles_part_1 = 0
     for index in list_of_values:
         numbers = extract_numbers(index)
         if triangle_checker(numbers[0], numbers[1], numbers[2]):
-            number_of_real_triangles += 1
-    print(f'The number of real triangles are {number_of_real_triangles}')
+            number_of_real_triangles_part_1 += 1
+    print(f'For part 1: The number of real triangles are {number_of_real_triangles_part_1}')
 
 
 

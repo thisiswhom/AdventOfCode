@@ -8,7 +8,7 @@ def testable_NONS():
     return solution.Naughty_Or_Nice_Text("faaart")
 
 def test_class_attributes(testable_NONS):
-    """Ensuring that the class takes only one parameter and its a string"""
+    """Ensuring that the class takes only one parameter and it's a string"""
     assert hasattr(testable_NONS, "text")
     assert isinstance(testable_NONS.text, str)
 
@@ -43,19 +43,46 @@ def test_consecutive_letters_check(test_input, expected):
 
 @pytest.mark.parametrize("test_input,expected", [
     ("Tarrasque", True),
-    ("Queue", False)])
-def test_passed_all_part_one_tests(test_input,expected):
+    ("Queue", False)
+])
+def test_passed_all_part_one_checks(test_input,expected):
     """Checks if the three checks for part one are passed"""
     testing = solution.Naughty_Or_Nice_Text(test_input)
-    assert testing.passed_all_part_one_tests() == expected
+    assert testing.passed_all_part_one_checks() == expected
+
+@pytest.mark.parametrize("test_input,expected", [
+    ("xx", False),
+    ("xxx", False),
+    ("xxxx", True),
+    ("xxyxx", True),
+    ("xxxyxx", True),
+    ("cgycg", True),
+    ("CGCG", True)
+])
+def test_double_consecutive_letters_check(test_input,expected):
+    """testing if there are any double sets of letters that must no overlap"""
+    testing = solution.Naughty_Or_Nice_Text(test_input)
+    assert testing.double_consecutive_letters_check() == expected
 
 @pytest.mark.parametrize("test_input,expected", [
     ("xyx", True),
-    ("xxy", False)
+    ("xxy", False),
+    ("xxx", True)
 ])
 def test_repeat_pattern_check(test_input,expected):
+    """three most simple versions of the pattern tested against the regex"""
     testing = solution.Naughty_Or_Nice_Text(test_input)
-    assert testing.repeat_pattern_check () == expected
+    assert testing.repeat_pattern_check() == expected
+
+@pytest.mark.parametrize("test_input,expected", [
+    ("xxyxx", True),
+    ("xxxxxyx", True),
+    ("googlegoo", False)
+])
+def test_passed_all_part_two_checks(test_input,expected):
+    """Checks if the two checks for part twp are passed"""
+    testing = solution.Naughty_Or_Nice_Text(test_input)
+    assert testing.passed_all_part_two_checks() == expected
 
 
 def test_intake_vales(mocker):

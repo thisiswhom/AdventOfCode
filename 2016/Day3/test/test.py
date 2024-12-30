@@ -2,13 +2,13 @@ import pytest
 
 import source.solution as solution
 
-def test_triangle_checker_True():
-    result = solution.triangle_checker(1,1,1)
-    assert result == True
-
-def test_triangle_checker_False():
-    result = solution.triangle_checker(5,10,25)
-    assert result == False
+@pytest.mark.parametrize("side_a, side_b, side_c,expected", [
+    (1,1,1, True),
+    (5,10,25, False)
+])
+def test_triangle_checker(side_a, side_b, side_c, expected):
+    result = solution.triangle_checker(side_a, side_b, side_c)
+    assert result == expected
 
 def test_intake_vales(mocker):
     """Simulates opening a file using the pytest-mock plugin"""

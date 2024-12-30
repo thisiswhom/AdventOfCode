@@ -1,4 +1,4 @@
-
+import re
 
 class Naughty_Or_Nice_Text():
     def __init__(self, text):
@@ -35,14 +35,33 @@ class Naughty_Or_Nice_Text():
                 return True
             index_tracker += 1
 
-    def passed_all_part_one_tests(self):
+    def passed_all_part_one_checks(self):
+        """Returns bool if the checks for part one of the challege passes for each string"""
         if self.three_vowel_check() and self.banned_combos_check() and self.consecutive_letters_check():
             return True
         else:
             return False
 
+    def double_consecutive_letters_check(self):
+        """Looking for a double set of any letters with the count method"""
+        pattern = r'([a-zA-Z]{2}).*?\1'
+        return bool(re.search(pattern, self.text))
+
     def repeat_pattern_check(self):
-        pass
+        """Uses regex to find any one character, then any other character
+        then it must find a chracter that matches the first
+
+        Originally going to use a bunch of loops but learned that it could be
+        done much simpler with a regex"""
+        pattern = r'([a-zA-Z]).\1'
+        return bool(re.search(pattern, self.text))
+
+    def passed_all_part_two_checks(self):
+        """Returns bool if the checks for part two of the challege passes for each string"""
+        if self.double_consecutive_letters_check() and self.repeat_pattern_check():
+            return True
+        else:
+            return False
 
 
 def create_file_path(file_name):
@@ -64,15 +83,19 @@ def intake_values(file):
     return list_of_values
 
 def main():
-    number_of_nice = 0
+    number_of_nice_part_1 = 0
+    number_of_nice_part_2 = 0
     file = create_file_path("values")
     list_of_values = intake_values(file)
     for value in list_of_values:
         questionable_string = Naughty_Or_Nice_Text(value)
-        if questionable_string.passed_all_part_one_tests():
-            number_of_nice += 1
-    print(f"There are {number_of_nice} nice strings!")
-    return number_of_nice
+        if questionable_string.passed_all_part_one_checks():
+            number_of_nice_part_1 += 1
+        if questionable_string.passed_all_part_two_checks():
+            number_of_nice_part_2 += 1
+    print(f"There are {number_of_nice_part_1} nice strings in part one!")
+    print(f"There are {number_of_nice_part_2} nice strings in part two!")
+    return number_of_nice_part_1
 
 
 if __name__ == "__main__":
