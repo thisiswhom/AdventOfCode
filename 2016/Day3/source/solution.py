@@ -1,5 +1,7 @@
 def triangle_checker(side_a, side_b, side_c):
-    """takes in three integers and confirms if they would make a triangle"""
+    """
+    takes in three integers and confirms if they would make a triangle
+    """
     if side_a + side_b > side_c and side_b + side_c > side_a and side_c + side_a > side_b:
         return True
     else:
@@ -7,11 +9,13 @@ def triangle_checker(side_a, side_b, side_c):
 
 
 def create_file_path(file_name):
-    """This function creates the absolute path of the values file.
+    """
+    This function creates the absolute path of the values file.
 
     This is to enable me to not worry about pushing my username/file structure gitHub
     Possible side benefit is others can run this on their system without worrying
-    about differences in their environment and mine"""
+    about differences in their environment and mine
+    """
     import os
     current_dir = os.path.dirname(os.path.abspath(__file__))
     file = os.path.join(current_dir, file_name)
