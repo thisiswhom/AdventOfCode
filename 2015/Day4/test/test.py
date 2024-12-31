@@ -26,10 +26,4 @@ def test_use_regex(test_input,expected):
     ("pqrstuv", 1048970)
 ])
 def test_find_lowest_number(test_input,expected):
-    """
-
-    :param test_input:
-    :param expected:
-    :return:
-    """
     assert solution.find_lowest_number(test_input) == expected
