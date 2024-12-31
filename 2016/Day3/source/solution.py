@@ -25,9 +25,25 @@ def intake_values(file):
     return list_of_values
 
 def extract_numbers(s):
-    # Split the string by whitespace and convert to integers
     numbers = list(map(int, s.split()))
     return numbers
+
+def reorder_triangle_list_vertically(data):
+    """
+    Reorders the input list of strings into vertical triangles.
+    Each column becomes a group of triangles from consecutive rows.
+    """
+    parsed_data = [list(map(int, line.split())) for line in data]
+    columns = list(zip(*parsed_data))
+    triangles = []
+    for col in columns:
+        for i in range(0, len(col), 3):
+            if i + 2 < len(col):
+                triangles.append([col[i], col[i + 1], col[i + 2]])
+
+    return triangles
+
+
 
 def main():
     file = create_file_path("values")
@@ -38,6 +54,12 @@ def main():
         if triangle_checker(numbers[0], numbers[1], numbers[2]):
             number_of_real_triangles_part_1 += 1
     print(f'For part 1: The number of real triangles are {number_of_real_triangles_part_1}')
+    number_of_real_triangles_part_2 = 0
+    reordered_list = reorder_triangle_list_vertically(list_of_values)
+    for triangle_set in reordered_list:
+        if triangle_checker(triangle_set[0], triangle_set[1], triangle_set[2]):
+            number_of_real_triangles_part_2 += 1
+    print(f'For part 2: The number of real triangles are {number_of_real_triangles_part_2}')
 
 
 

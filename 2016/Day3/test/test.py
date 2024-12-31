@@ -10,6 +10,26 @@ def test_triangle_checker(side_a, side_b, side_c, expected):
     result = solution.triangle_checker(side_a, side_b, side_c)
     assert result == expected
 
+import pytest
+
+def test_reorder_triangle_list_vertically():
+    input_data = [
+        "101 301 501",
+        "102 302 502",
+        "103 303 503",
+        "201 401 601",
+        "202 402 602",
+        "203 403 603"
+    ]
+    expected_output = [
+        [101, 102, 103], [201, 202, 203],  # Column 1 triangles
+        [301, 302, 303], [401, 402, 403],  # Column 2 triangles
+        [501, 502, 503], [601, 602, 603]   # Column 3 triangles
+    ]
+    result = solution.reorder_triangle_list_vertically(input_data)
+    assert result == expected_output, f"Expected {expected_output}, but got {result}"
+
+
 def test_intake_vales(mocker):
     """Simulates opening a file using the pytest-mock plugin"""
     mock_file_data_as_list = """mdskbvzguxvieilr, anjcvqpavhdloaqh"""
